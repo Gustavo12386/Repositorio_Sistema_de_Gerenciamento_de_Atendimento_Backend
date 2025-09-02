@@ -1,0 +1,11 @@
+spring:
+ application:
+   name: notificacao
+ jpa:
+   hibernate:
+    ddl-auto: create-drop
+   show-sql: true
+ datasource:
+   url: jdbc:postgresql://localhost:5432/notificacaodb 
+   username: calderarogustavo
+   password: Gusang_20011	 
