@@ -20,12 +20,14 @@ public class ServiceEntity {
 	 private UUID id;	
 	 private String name;	
 	 private String phone;	 
+	 private String email;
 	 	 
-	 public static ServiceEntity createNewService(String name, String phone) {
+	 public static ServiceEntity createNewService(String name, String phone, String email) {
 		    ServiceEntity service = new ServiceEntity();
 		    service.setId(UUID.randomUUID());
 		    service.setName(name);
 		    service.setPhone(phone);
+		    service.setEmail(email);
 		    return service;
 		}
 	 

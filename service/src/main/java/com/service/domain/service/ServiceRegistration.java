@@ -22,7 +22,7 @@ public class ServiceRegistration {
 	 private ServiceRepository serviceRepository;
 	 
 	 public ServiceEntity create(@Valid ServiceInput input) {
-		 ServiceEntity service = ServiceEntity.createNewService(input.getName(), input.getPhone());
+		 ServiceEntity service = ServiceEntity.createNewService(input.getName(), input.getPhone(), input.getEmail());
 		 return serviceRepository.saveAndFlush(service);
 	 }
 	 
@@ -30,6 +30,7 @@ public class ServiceRegistration {
 		 ServiceEntity service = serviceRepository.findById(serviceId).orElseThrow();
 		 service.setPhone(input.getPhone());
 		 service.setName(input.getName());
+		 service.setEmail(input.getEmail());
 		 return serviceRepository.saveAndFlush(service);
 	 }
 }

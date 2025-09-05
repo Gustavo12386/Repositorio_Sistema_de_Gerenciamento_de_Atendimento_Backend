@@ -11,4 +11,6 @@ public class ServiceInput {
 	private String name;
 	@NotBlank
 	private String phone;
+	@NotBlank
+	private String email;	
 }
