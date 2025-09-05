@@ -8,10 +8,10 @@
 		<version>3.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.gustavocalderaro</groupId>
-	<artifactId>atendimento</artifactId>
+	<groupId>com.service</groupId>
+	<artifactId>service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>atendimento</name>
+	<name>service</name>
 	<description>microsserviço atentdimento</description>
 	<url/>
 	<licenses>

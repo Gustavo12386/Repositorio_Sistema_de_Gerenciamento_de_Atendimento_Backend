@@ -1,13 +1,13 @@
-package com.gustavocalderaro;
+package com.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AtendimentoApplication {
+public class ServiceSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AtendimentoApplication.class, args);
+		SpringApplication.run(ServiceSystemApplication.class, args);
 	}
 
 }
