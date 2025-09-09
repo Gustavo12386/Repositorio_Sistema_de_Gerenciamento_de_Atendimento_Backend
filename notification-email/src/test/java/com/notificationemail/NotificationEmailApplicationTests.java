@@ -1,10 +1,10 @@
-package com.gustavocalderaro.notificacao;
+package com.notificationemail;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NotificacaoApplicationTests {
+class NotificationEmailApplicationTests {
 
 	@Test
 	void contextLoads() {

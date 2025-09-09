@@ -1,13 +1,13 @@
-package com.gustavocalderaro.notificacao;
+package com.notificationemail;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NotificacaoApplication {
+public class NotificationEmailApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NotificacaoApplication.class, args);
+		SpringApplication.run(NotificationEmailApplication.class, args);
 	}
 
 }
