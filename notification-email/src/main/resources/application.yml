@@ -1,15 +1,15 @@
-spring:
- application:
-     name: notification-email
- jpa:
-   hibernate:
-    ddl-auto: create-drop
-   show-sql: true
- datasource:
-  url: jdbc:postgresql://localhost:5432/notificacaoemaildb 
-  username: calderarogustavo
-  password: Gusang_20011  
- mail:
+spring:  
+  application:
+    name: notification-email
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notificacaoemaildb
+    username: calderarogustavo
+    password: Gusang_20011
+  mail:
     host: smtp.gmail.com
     port: 587
     username: calderarogustavo@gmail.com
@@ -19,4 +19,18 @@ spring:
         smtp:
           auth: true
           starttls:
-            enable: true	
+            enable: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: email-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+broker:
+  topic:
+    email:
+      name: email-topic

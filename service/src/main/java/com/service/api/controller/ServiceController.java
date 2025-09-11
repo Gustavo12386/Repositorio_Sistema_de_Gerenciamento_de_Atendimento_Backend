@@ -24,10 +24,12 @@ import com.service.domain.service.ServiceRegistration;
 import org.springframework.http.HttpStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/v1/services")
 @RequiredArgsConstructor
+@Slf4j
 public class ServiceController {
    
 	@Autowired

@@ -43,9 +43,9 @@ public class ServiceRepositoryTest {
     void shouldDeleteServiceEntity() {
         // Arrange
         ServiceEntity service = ServiceEntity.createNewService(
-                "Barbearia Central",
-                "(21) 98888-7777",
-                "barbearia@central.com"
+                "Gustavo Calderaro",
+                "(71) 99237-0172",
+                "calderarogustavo@gmail.com"
         );
         serviceRepository.saveAndFlush(service);
 

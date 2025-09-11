@@ -3,7 +3,7 @@ package com.service.domain.model;
 import java.util.UUID;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class ServiceEntity {
 	 @Id
 	 @EqualsAndHashCode.Include

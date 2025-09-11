@@ -5,8 +5,10 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,12 +17,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class EmailModel {
 	@Id
-	@EqualsAndHashCode.Include
-	private UUID emailId;
+	@Column(columnDefinition = "uuid")
+    private UUID emailId = UUID.randomUUID();
 	private UUID userId;
 	private String emailFrom;
 	private String emailTo;
