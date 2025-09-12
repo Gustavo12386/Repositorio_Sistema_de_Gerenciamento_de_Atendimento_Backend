@@ -34,3 +34,12 @@ broker:
   topic:
     email:
       name: email-topic
+
+eureka:
+  client:
+    enabled: false
+    server-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${random.value}
+    prefer-ip-address: true			
