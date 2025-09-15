@@ -37,7 +37,7 @@ resilience4j:
         maxAttempts: 2
         waitDuration: 20ms
     instances:
-      Retry_CourierAPIClient_payoutCalculation:
+      Retry_ServiceAPIClient_payoutCalculation:
         baseConfig: default
         maxAttempts: 3
         retryExceptions:

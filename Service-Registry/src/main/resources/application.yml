@@ -4,9 +4,7 @@ server:
 spring:
   application:
     name: Service-Registry
-  cloud:
-    config:
-      enabled: false   
+   
 
 eureka:
   client:

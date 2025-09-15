@@ -1,6 +1,10 @@
+server:
+  port: 8082
+
 spring:  
   application:
     name: notification-email
+
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -9,6 +13,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/notificacaoemaildb
     username: calderarogustavo
     password: Gusang_20011
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -20,6 +25,7 @@ spring:
           auth: true
           starttls:
             enable: true
+
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -37,9 +43,11 @@ broker:
 
 eureka:
   client:
-    enabled: false
-    server-url:
-      default-zone: http://localhost:8761/eureka/
+    enabled: true             
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
   instance:
-    instance-id: ${random.value}
-    prefer-ip-address: true			
+    instance-id: ${spring.application.name}:${random.value}
+    prefer-ip-address: true

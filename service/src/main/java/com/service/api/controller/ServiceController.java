@@ -3,9 +3,9 @@ package com.service.api.controller;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.PagedModel;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,9 +51,10 @@ public class ServiceController {
     }
 	
 	@GetMapping
-	public PagedModel<ServiceEntity> findAll(@PageableDefault Pageable pageable) {
-	     return new PagedModel<>(serviceRepository.findAll(pageable));
+	public Page<ServiceEntity> findAll(@PageableDefault Pageable pageable) {
+	     return serviceRepository.findAll(pageable);
 	}
+
 
 	@GetMapping("/{serviceId}")
 	public ServiceEntity findById(@PathVariable UUID serviceId) {
