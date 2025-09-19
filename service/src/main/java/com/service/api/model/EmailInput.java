@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmailInput {
-	private UUID userId;
+	private UUID id;
 	private String emailTo;
 	private String subject;
-	private String text;
+	private String text;	
 }

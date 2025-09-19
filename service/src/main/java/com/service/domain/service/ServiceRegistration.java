@@ -27,20 +27,22 @@ public class ServiceRegistration {
 	 private ServiceProducer serviceProducer;
 	 
 	 public ServiceEntity create(ServiceInput input) {
-		   // Cria a entidade e salva no banco
+		   
 	        ServiceEntity service = ServiceEntity.createNewService(
 	            input.getName(),
 	            input.getPhone(),
-	            input.getEmail()
+	            input.getEmail(),
+	            input.getData_agendamento(),   
+	            input.getHora_agendamento()
 	        );
 	        ServiceEntity saved = serviceRepository.saveAndFlush(service);
-
-	        // Monta a mensagem de e-mail a ser publicada no Kafka
+	        
 	        EmailInput emailInput = new EmailInput();
-	        emailInput.setUserId(saved.getId());
+	        emailInput.setId(saved.getId());
 	        emailInput.setEmailTo(saved.getEmail());
 	        emailInput.setSubject("Cadastro realizado com sucesso!");
-	        emailInput.setText(saved.getName() + ", seu cadastro já foi realizado com sucesso! \n");
+	        emailInput.setText(saved.getName() + ", solicitou um agendamento de atendimento! para o dia  \n"
+	        + saved.getData_agendamento() + "às: " + saved.getHora_agendamento());
 
 	        // Envia para o Kafka
 	        serviceProducer.sendEmail(emailInput);
