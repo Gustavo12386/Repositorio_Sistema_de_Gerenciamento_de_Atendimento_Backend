@@ -40,7 +40,7 @@ public class ServiceRegistration {
 	        EmailInput emailInput = new EmailInput();
 	        emailInput.setId(saved.getId());
 	        emailInput.setEmailTo(saved.getEmail());
-	        emailInput.setSubject("Cadastro realizado com sucesso!");
+	        emailInput.setSubject("Você recebeu uma nova solicitação de agendamento!");
 	        emailInput.setText(saved.getName() + ", solicitou um agendamento de atendimento! para o dia  \n"
 	        + saved.getData_agendamento() + "às: " + saved.getHora_agendamento());
 
