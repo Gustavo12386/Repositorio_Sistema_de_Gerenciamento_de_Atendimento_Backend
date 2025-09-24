@@ -42,7 +42,7 @@ public class ServiceRegistration {
 	        emailInput.setEmailTo(saved.getEmail());
 	        emailInput.setSubject("Você recebeu uma nova solicitação de agendamento!");
 	        emailInput.setText(saved.getName() + ", solicitou um agendamento de atendimento! para o dia  \n"
-	        + saved.getData_agendamento() + "às: " + saved.getHora_agendamento());
+	        + saved.getData_agendamento() + " às: " + saved.getHora_agendamento());
 
 	        // Envia para o Kafka
 	        serviceProducer.sendEmail(emailInput);
