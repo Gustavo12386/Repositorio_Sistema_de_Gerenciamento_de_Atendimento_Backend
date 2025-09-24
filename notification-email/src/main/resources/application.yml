@@ -7,10 +7,11 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/notificacaoemaildb
+    url: jdbc:postgresql://localhost:5432/atendimentodb 
+    #url: jdbc:postgresql://localhost:5432/notificacaoemaildb    
     username: calderarogustavo
     password: Gusang_20011
 
