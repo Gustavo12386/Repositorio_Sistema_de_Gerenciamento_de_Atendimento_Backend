@@ -5,8 +5,6 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -23,8 +21,7 @@ import lombok.Setter;
 public class EmailModel {
 	@Id
 	@Column(columnDefinition = "uuid")
-    private UUID emailId = UUID.randomUUID();
-	private UUID userId;
+    private UUID emailId = UUID.randomUUID();	
 	private String emailFrom;
 	private String emailTo;
 	private String subject;
