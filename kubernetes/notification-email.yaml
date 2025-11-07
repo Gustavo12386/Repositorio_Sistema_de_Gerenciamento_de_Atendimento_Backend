@@ -13,7 +13,7 @@ spec:
         app: notification-email
     spec:
       containers:
-        - name: kafka-final-test
+        - name: notification-email
           image: gustavo12386/microservice-notification-email:latest
           imagePullPolicy: Always
           env:            
@@ -26,7 +26,6 @@ spec:
             - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
               value: "kafka:9092"
             - name: SERVER_PORT
-              value: "8082"
-            # Force application.yml correto
+              value: "8082"            
             - name: SPRING_CONFIG_IMPORT
               value: "optional:file:/config/"
