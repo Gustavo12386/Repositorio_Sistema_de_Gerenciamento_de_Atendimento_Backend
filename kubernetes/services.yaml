@@ -112,9 +112,6 @@ spec:
 #>   --list \
 #>   --bootstrap-server localhost:9092
 # ===========================================
-# ===========================================
-# KAFKA Server - CONFIGURAÇÃO CORRIGIDA
-# ===========================================
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -167,7 +164,7 @@ spec:
            - "sh"
            - "-c"
            - |
-            # CORRIGE o server.properties - versão Alpine compatible
+            
             echo "Corrigindo advertised.listeners..."
             cat /opt/kafka/config/kraft/server.properties | sed 's|advertised.listeners=PLAINTEXT://localhost:9092|advertised.listeners=PLAINTEXT://kafka:9092|' > /tmp/server.properties
             cp /tmp/server.properties /opt/kafka/config/kraft/server.properties
