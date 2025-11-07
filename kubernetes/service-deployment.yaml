@@ -13,8 +13,7 @@ spec:
         app: service
     spec:
       containers:
-        - name: service
-          # Substitua pela sua imagem no Docker Hub:
+        - name: service          
           image: gustavo12386/service:latest
           imagePullPolicy: Never
           ports:
