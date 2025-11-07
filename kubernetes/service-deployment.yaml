@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service
+  template:
+    metadata:
+      labels:
+        app: service
+    spec:
+      containers:
+        - name: service
+          # Substitua pela sua imagem no Docker Hub:
+          image: gustavo12386/service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8081
+          env:
+            # Configuração do banco PostgreSQL
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres:5432/atendimentodb
+            - name: SPRING_DATASOURCE_USERNAME
+              value: calderarogustavo
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: Gusang_20011
+
+            # Configuração do Kafka
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: kafka:9092
+
+            # Configuração do Eureka
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://host.minikube.internal:8761/eureka/
+
+            # Porta da aplicação
+            - name: SERVER_PORT
+              value: "8081"
+
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service
+spec:
+  type: NodePort
+  selector:
+    app: service
+  ports:
+    - port: 8081
+      targetPort: 8081
+      nodePort: 30081
+

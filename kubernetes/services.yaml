@@ -1,0 +1,249 @@
+# ===========================================
+# POSTGRESQL
+# ===========================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: atendimentodb
+            - name: POSTGRES_USER
+              value: calderarogustavo
+            - name: POSTGRES_PASSWORD
+              value: Gusang_20011
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+      targetPort: 5432
+      nodePort: 30432
+  selector:
+    app: postgres
+
+# ===========================================
+# PGADMIN
+# ===========================================
+# minikube service pgadmin --url
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+        - name: pgadmin
+          image: dpage/pgadmin4:8
+          ports:
+            - containerPort: 80
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: calderarogustavo@gmail.com
+            - name: PGADMIN_DEFAULT_PASSWORD
+              value: Gusang_20011
+          volumeMounts:
+            - name: pgadmin-data
+              mountPath: /var/lib/pgadmin
+      volumes:
+        - name: pgadmin-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
+  selector:
+    app: pgadmin
+
+# ===========================================
+# KAFKA Server
+# Comando para acessar o Kafka CLI:
+# kubectl exec -it <kafka-pod-name> -- sh
+# Comando para criar tópico:
+# /opt/kafka/bin/kafka-topics.sh \
+#>   --create \
+#>   --topic email-topic \
+#>   --bootstrap-server localhost:9092 \
+#>   --partitions 1 \
+#>   --replication-factor 1
+# Comando para listar tópicos:
+#  /opt/kafka/bin/kafka-topics.sh \
+#>   --list \
+#>   --bootstrap-server localhost:9092
+# ===========================================
+# ===========================================
+# KAFKA Server - CONFIGURAÇÃO CORRIGIDA
+# ===========================================
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - name: kafka
+          image: apache/kafka:3.7.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9092
+          env:
+            - name: KAFKA_NODE_ID
+              value: "1"
+            - name: KAFKA_PROCESS_ROLES
+              value: "broker,controller"
+            - name: KAFKA_ADVERTISED_LISTENERS
+              value: "PLAINTEXT://kafka:9092"  
+            - name: KAFKA_LISTENERS
+              value: "PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093"            
+            - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+              value: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT"
+            - name: KAFKA_INTER_BROKER_LISTENER_NAME
+              value: "PLAINTEXT"
+            - name: KAFKA_CONTROLLER_LISTENER_NAMES
+              value: "CONTROLLER"
+            - name: KAFKA_CONTROLLER_QUORUM_VOTERS
+              value: "1@kafka:9093"
+            - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+              value: "1"
+            - name: KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR
+              value: "1"
+            - name: KAFKA_TRANSACTION_STATE_LOG_MIN_ISR
+              value: "1"
+            - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
+              value: "true"
+            - name: KAFKA_LOG_DIRS
+              value: "/tmp/kraft-combined-logs"
+          command:
+           - "sh"
+           - "-c"
+           - |
+            # CORRIGE o server.properties - versão Alpine compatible
+            echo "Corrigindo advertised.listeners..."
+            cat /opt/kafka/config/kraft/server.properties | sed 's|advertised.listeners=PLAINTEXT://localhost:9092|advertised.listeners=PLAINTEXT://kafka:9092|' > /tmp/server.properties
+            cp /tmp/server.properties /opt/kafka/config/kraft/server.properties
+            
+            if [ ! -f /tmp/kraft-combined-logs/meta.properties ]; then
+              echo "Formatando Kafka storage..."
+              /opt/kafka/bin/kafka-storage.sh format -t $(/opt/kafka/bin/kafka-storage.sh random-uuid) -c /opt/kafka/config/kraft/server.properties
+            fi
+            echo "Iniciando Kafka..."
+            exec /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/kraft/server.properties
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+spec:
+  selector:
+    app: kafka
+  ports:
+    - name: kafka
+      port: 9092
+      targetPort: 9092
+    - name: controller
+      port: 9093
+      targetPort: 9093
+  clusterIP: None
+
+
+# ===========================================
+# KAFKA UI
+# ===========================================
+# minikube service kafka-ui --url
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-ui
+  template:
+    metadata:
+      labels:
+        app: kafka-ui
+    spec:
+      containers:
+        - name: kafka-ui
+          image: provectuslabs/kafka-ui:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: KAFKA_CLUSTERS_0_NAME
+              value: local
+            - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
+              value: kafka:9092
+            - name: KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL
+              value: PLAINTEXT
+            - name: KAFKA_CLUSTERS_0_PROPERTIES_ADVERTISED_LISTENERS
+              value: PLAINTEXT://kafka:9092
+            - name: KAFKA_CLUSTERS_0_READONLY
+              value: "false"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-ui
+spec:
+  type: NodePort
+  selector:
+    app: kafka-ui
+  ports:
+    - name: http
+      port: 8084
+      targetPort: 8080
+      nodePort: 30095
+
+

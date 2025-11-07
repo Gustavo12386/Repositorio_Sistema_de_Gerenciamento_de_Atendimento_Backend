@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-email
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-email
+  template:
+    metadata:
+      labels:
+        app: notification-email
+    spec:
+      containers:
+        - name: kafka-final-test
+          image: gustavo12386/microservice-notification-email:latest
+          imagePullPolicy: Always
+          env:            
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres:5432/atendimentodb"
+            - name: SPRING_DATASOURCE_USERNAME  
+              value: "calderarogustavo"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "Gusang_20011"            
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+            - name: SERVER_PORT
+              value: "8082"
+            # Force application.yml correto
+            - name: SPRING_CONFIG_IMPORT
+              value: "optional:file:/config/"
