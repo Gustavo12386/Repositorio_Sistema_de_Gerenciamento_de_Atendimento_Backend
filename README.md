@@ -38,6 +38,8 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 
 ## Imagem do SwaggerUI com os endpoints da API services
 <img width="1579" height="751" alt="cap4" src="https://github.com/user-attachments/assets/189f7cec-b683-488d-a6f9-8164851ae584" />
+## Imagem da Dashboard do Kubernetes executando os serviços
+<img width="1658" height="805" alt="Captura de tela 2025-11-13 170934" src="https://github.com/user-attachments/assets/e6b7aebe-ecb6-4f9a-ba44-cc9d8bdff0ad" />
 
 ## Imagens da tabelas do banco de dados das APIs services e notification-email
 <img width="1385" height="68" alt="cap1" src="https://github.com/user-attachments/assets/9760cb3e-5f4c-4ac0-9b44-a8f90348e38e" />
