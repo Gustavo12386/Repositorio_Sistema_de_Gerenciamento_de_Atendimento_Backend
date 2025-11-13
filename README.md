@@ -4,7 +4,7 @@
 - O backend do sistema é composto por quatro APIs, organizadas na arquitetura de microsserviços. O primeiro é o producer, responsável pelo registro das informações de clientes. O segundo é o consumer,
 encarregado do envio de e-mails de notificação. O terceiro atua como API Gateway, centralizando e gerenciando as requisições de entrada. Por fim, há o service discovery, responsável pela localização dinâmica
 e orquestração dos microsserviços a rede. Os Microsserviços utilizam o sistema de mensageria Kafka, além disso utilizam tecnologias como Eureka,Resilience4j, Swagger para documentação de API e SpringCloud.
-Esse backend também apresenta testes de integração relacionados a API de services.
+Esse backend também apresenta testes de integração relacionados a API de services, e também duas branches uma branch com os serviços sendo executados pelo Docker Compose e a outra chamada de Kubernetes com os serviços rodando pelo Kubernetes.
 
  ## ✨ Tecnologias Utilizadas
 - Java 21
@@ -12,6 +12,7 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 - SpringCloud
 - Resilience4j
 - Maven
+- Docker/Kubernetes
 - PostgreSQL
 - Kafka
 - Eureka
