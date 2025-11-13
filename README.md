@@ -13,6 +13,7 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 - Resilience4j
 - Maven
 - PostgreSQL
+- Docker/Kubernetes
 - Kafka
 - Eureka
 - Swagger
