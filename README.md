@@ -3,8 +3,8 @@
 ## 💻 Sobre o Backend do Sistema
 - O backend do sistema é composto por quatro APIs, organizadas na arquitetura de microsserviços. O primeiro é o producer, responsável pelo registro das informações de clientes. O segundo é o consumer,
 encarregado do envio de e-mails de notificação. O terceiro atua como API Gateway, centralizando e gerenciando as requisições de entrada. Por fim, há o service discovery, responsável pela localização dinâmica
-e orquestração dos microsserviços a rede. Os Microsserviços utilizam o sistema de mensageria Kafka, além disso utilizam tecnologias como Eureka,Resilience4j, Swagger para documentação de API e SpringCloud.
-Esse backend também apresenta testes de integração relacionados a API de services.
+e orquestração dos microsserviços a rede. Os Microsserviços utilizam o sistema de mensageria Kafka, além disso utilizam tecnologias como Eureka,Resilience4j, Swagger para documentação de API e SpringCloud e a utilização do SonarQube para automatizar a análise da qualidade e segurança do código de software, detectando erros, vulnerabilidades e "code smells" (problemas que podem se tornar erros).
+Esse backend também apresenta testes de integração relacionados a API de services, e também duas branches uma branch com os serviços sendo executados pelo Docker Compose e a outra chamada de Kubernetes com os serviços rodando pelo Kubernetes.
 
  ## ✨ Tecnologias Utilizadas
 - Java 21
@@ -16,6 +16,7 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 - Docker/Kubernetes
 - Kafka
 - Eureka
+- SonarQube
 - Swagger
 - Hibernate
 - JPA
@@ -30,6 +31,7 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 - [ ] Criação dos Microsserviços gateway e Service-Registry
 - [ ] Configuração do Eureka
 - [ ] Realização dos testes de integração na API de services
+- [ ] Utilização do SonarQube para análise da qualidade do código
 
 ## 🚀 Como Executar
 - Clone o repositório
@@ -38,6 +40,7 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 
 ## Imagem do SwaggerUI com os endpoints da API services
 <img width="1579" height="751" alt="cap4" src="https://github.com/user-attachments/assets/189f7cec-b683-488d-a6f9-8164851ae584" />
+
 ## Imagem da Dashboard do Kubernetes executando os serviços
 <img width="1658" height="805" alt="Captura de tela 2025-11-13 170934" src="https://github.com/user-attachments/assets/e6b7aebe-ecb6-4f9a-ba44-cc9d8bdff0ad" />
 
@@ -47,6 +50,21 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 
 ## Imagem da notificação sendo enviada
 <img width="600" height="164" alt="cap3" src="https://github.com/user-attachments/assets/85e8dfd1-77b7-4d41-bfb3-be72bafa5a1d" />
+
+## Imagem do Painel do Eureka
+<img width="1562" height="817" alt="Captura de tela 2025-12-04 110624" src="https://github.com/user-attachments/assets/69b1a226-121e-40ed-af04-916fda4c63cd" />
+
+## Imagem do teste de qualidade do microsservico Service
+<img width="1545" height="789" alt="Captura de tela 2025-12-03 143910" src="https://github.com/user-attachments/assets/3c9e4a15-32f3-4450-8615-886a8b921383" />
+
+## Imagem do teste de qualidade do microsservico de Notificação
+<img width="1450" height="784" alt="Captura de tela 2025-12-03 152637" src="https://github.com/user-attachments/assets/e5bfbc7b-268c-41bd-8a75-ebdd5c3103dd" />
+
+## Imagem do teste de qualidade do microsservico Gateway
+<img width="1472" height="771" alt="Captura de tela 2025-12-03 205053" src="https://github.com/user-attachments/assets/86a46ae1-baeb-4afd-b2f6-5b1f12ce0531" />
+
+## Imagem do teste de qualidade do microsservico Service Registry
+<img width="1374" height="764" alt="Captura de tela 2025-12-03 210453" src="https://github.com/user-attachments/assets/c595569a-a3ec-40f7-b071-459bbd7adb7e" />
 
 ## Autor 
 Gustavo Calderaro
