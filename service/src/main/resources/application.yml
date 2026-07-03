@@ -4,14 +4,17 @@ server:
 spring:
   application:
     name: service
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
+
   datasource:
     url: jdbc:postgresql://localhost:5432/atendimentodb
     username: calderarogustavo
     password: Gusang_20011
+
   kafka:
     bootstrap-servers: localhost:9092
     producer:
@@ -21,11 +24,38 @@ spring:
         spring.json.add.type.headers: false
         spring.json.trusted.packages: "*"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+
+  endpoint:
+    health:
+      show-details: always
+
+    logfile:
+      external-file: logs/application.log
+
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+  metrics:
+    tags:
+      application: prometheus-grafana
+
+  security:
+    username: prometheus
+    password: Gusang_20011
+
 eureka:
   client:
     enabled: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
   instance:
     instance-id: ${random.value}
     prefer-ip-address: true
@@ -36,6 +66,7 @@ resilience4j:
       default:
         maxAttempts: 2
         waitDuration: 20ms
+
     instances:
       Retry_ServiceAPIClient_payoutCalculation:
         baseConfig: default
@@ -54,6 +85,7 @@ resilience4j:
         failureRateThreshold: 50
         permittedNumberOfCallsInHalfOpenState: 3
         waitDurationInOpenState: 10000
+
     instances:
       CircuitBreaker_ServiceAPIClient_serviceRegister:
         baseConfig: default
