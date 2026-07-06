@@ -3,7 +3,7 @@
 ## 💻 Sobre o Backend do Sistema
 - O backend do sistema é composto por quatro APIs, organizadas na arquitetura de microsserviços. O primeiro é o producer, responsável pelo registro das informações de clientes. O segundo é o consumer,
 encarregado do envio de e-mails de notificação. O terceiro atua como API Gateway, centralizando e gerenciando as requisições de entrada. Por fim, há o service discovery, responsável pela localização dinâmica
-e orquestração dos microsserviços a rede. Os Microsserviços utilizam o sistema de mensageria Kafka, além disso utilizam tecnologias como Eureka,Resilience4j, Swagger para documentação de API e SpringCloud e a utilização do SonarQube para automatizar a análise da qualidade e segurança do código de software, detectando erros, vulnerabilidades e "code smells" (problemas que podem se tornar erros).
+e orquestração dos microsserviços a rede. Os Microsserviços utilizam o sistema de mensageria Kafka, além disso utilizam tecnologias como Eureka,Resilience4j, Swagger para documentação de API e SpringCloud, a utilização do SonarQube para automatizar a análise da qualidade e segurança do código de software, detectando erros, vulnerabilidades e "code smells" (problemas que podem se tornar erros) e a utilização das ferramentas Prometheus e Grafana para monitoramento e observabilidade.
 Esse backend também apresenta testes de integração relacionados a API de services, e também duas branches uma branch com os serviços sendo executados pelo Docker Compose e a outra chamada de Kubernetes com os serviços rodando pelo Kubernetes.
 
  ## ✨ Tecnologias Utilizadas
@@ -20,6 +20,8 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 - Swagger
 - Hibernate
 - JPA
+- Prometheus
+- Grafana
 
 
 ## 🗒️ Roteiro
@@ -32,6 +34,7 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 - [ ] Configuração do Eureka
 - [ ] Realização dos testes de integração na API de services
 - [ ] Utilização do SonarQube para análise da qualidade do código
+- [ ] Utilização do Prometheus e Grafana para monitoramento e observabilidade
 
 ## 🚀 Como Executar
 - Clone o repositório
@@ -63,6 +66,12 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 ## Imagem do teste de qualidade do microsservico Service Registry
 <img width="1374" height="764" alt="Captura de tela 2025-12-03 210453" src="https://github.com/user-attachments/assets/28ca34fc-534c-4e65-8f87-7e768a5e6384" />
 
+## Imagem do Prometheus
+<img width="1902" height="452" alt="Captura de tela 3" src="https://github.com/user-attachments/assets/3d08da43-529e-49cd-bc15-492818b06c07" />
+
+## Imagens do Grafana
+<img width="1602" height="752" alt="Captura de tela " src="https://github.com/user-attachments/assets/3aff531a-4fff-49e1-af8b-ad9a579b037b" />
+<img width="1612" height="766" alt="Captura de tela 2" src="https://github.com/user-attachments/assets/95d8d3e4-c11d-4464-aacc-d5c0510249b3" />
 
 ## Autor 
 Gustavo Calderaro
