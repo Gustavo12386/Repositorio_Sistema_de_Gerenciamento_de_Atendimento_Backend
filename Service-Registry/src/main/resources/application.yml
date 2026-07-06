@@ -5,7 +5,32 @@ spring:
   application:
     name: Service-Registry
    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
 
+  endpoint:
+    health:
+      show-details: always
+
+    logfile:
+      external-file: logs/application.log
+
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+  metrics:
+    tags:
+      application: prometheus-grafana
+
+  security:
+    username: prometheus
+    password: Gusang_20011   
+    
 eureka:
   client:
     register-with-eureka: false

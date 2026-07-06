@@ -51,7 +51,32 @@ spring:
             - RewritePath=/public/services/?(?<segment>.*), /api/v1/services/${segment}
             - RemoveJsonAttributesResponseBody=pendingServices,pendingServicesQuantity,phone,true
     
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
 
+  endpoint:
+    health:
+      show-details: always
+
+    logfile:
+      external-file: logs/application.log
+
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+  metrics:
+    tags:
+      application: prometheus-grafana
+
+  security:
+    username: prometheus
+    password: Gusang_20011   
+    
 eureka:
   client:
     register-with-eureka: true  # Alterado para true
