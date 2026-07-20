@@ -17,7 +17,7 @@ Esse backend também apresenta testes de integração relacionados a API de serv
 - Kafka
 - Eureka
 - SonarQube
-- Swagger
+- SwaggerUI
 - Hibernate
 - JPA
 - Prometheus
